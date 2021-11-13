@@ -1,3 +1,5 @@
+const TrieNode = require('./trieNode');
+
 module.exports = class Trie {
   constructor() {
     this.root = new TrieNode();
