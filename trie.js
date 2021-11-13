@@ -1,10 +1,18 @@
 const TrieNode = require('./trieNode');
 
+/**
+ * the Trie class
+ */
 module.exports = class Trie {
   constructor() {
     this.root = new TrieNode();
   }
 
+  /**
+   * inserts a new valid word into the trie
+   * @param {string} word
+   * @returns void
+   */
   insertWord(word) {
     if (!word) return;
 
@@ -23,6 +31,11 @@ module.exports = class Trie {
     currentNode.markEndOfWord(word);
   }
 
+  /**
+   * finds all the words that input is a prefix for.
+   * @param {string} word
+   * @returns []string
+   */
   findMatches(word) {
     const matches = [];
 
@@ -35,6 +48,11 @@ module.exports = class Trie {
     return matches;
   }
 
+  /**
+   * finds the trie node that terminates a valid word in the trie
+   * @param {string} word
+   * @returns TrieNode
+   */
   findTailTrieNodeForWord(word) {
     let currentNode = this.root;
 
@@ -47,6 +65,12 @@ module.exports = class Trie {
     return currentNode;
   }
 
+  /**
+   * recursively builds the valid words that can be found by traversing from root
+   * @param {TrieNode} root
+   * @param {[]string} matches
+   * @returns void
+   */
   buildMatches(root, matches = []) {
     if (root === null) return;
 
